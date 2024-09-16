@@ -71,5 +71,100 @@ procurement is shoud be done in such away Materials are Order in a correct quant
 
      ** 8) Payment Process **
         Payment  are prcessed from Account Payable in FI
-        
-          
+
+
+
+
+2) Special Procurement
+    Special Procurement in SAP MM (Materials Management) refers to specific procurement processes that differ from standard purchasing. These processes involve sourcing materials under special circumstances or from specific locations (such as stock transfers between plants, consignment stock, or subcontracting). These strategies are typically u
+
+Types Of Procurement:
+
+    1)Subcontracting Purchase Order- Item category L
+    2)Consignment Purchase Order- Item category K
+    3)Stock Transfer Purchase Order- Item category U
+    4)Service Purchase Order- Item category D
+    5)Standard Purchase Order- Item category Blank
+
+1)Subcontracting:
+   In subcontracting we provide a raw material to subcontractor vendor, he processes the material and he returns back to our company as a semifinished material or finished material . we are paying charges to subcontractor vendor.
+Example: We have one starter motor manufacturing company who manufactures the starter motors company provides the raw materials like starter housing, armature, bushes, solenoid and pinion bendex to subcontractor vendor. Subcontractor vendor processes and assembles the all components and fianally returns the Starter motor to our company. 
+
+Subcontracting process with over consumption & under consumption
+-----------------------------------------------------------------
+
+We supply raw material to subcontractor vendor what if he consumes
+ --> More quantity than supplied is called over consumption 
+ --> Less quantity than supplied is called under consumption
+
+Example for over consumption:
+  When you create a subcontracting PO for 100 finished Materials as per BOM we have to supply child materials. Because of some child parts got damaged & vendor comes to you and asks for more raw material this is called as over consumption.
+
+Example for under consumption:
+  When you create a subcontracting PO for 100finished materials per BOM we have to supply child materials. Some child parts vendor consumes less this is called as Under consumption
+
+
+Subcontracting process with Over consumpions:
+----------------------------------------------
+
+1)Create materials raw material and finished materials
+   Ex: Finished Mat --> starter motor, Raw Mat --> starter housing, armature, bushes, solenoid & pinion bendex.
+2)Create Sub contracting vendor
+3)Create Sub contracting PIR
+4)Create Bill of Material(BOM)
+5)Create PO with item category L
+6)Post goods issue
+7)transfer Posting for over consumed child  part
+8)Goods receipt for finished material
+9)Subsequent adjustment for over consumed materials
+
+
+
+Subcontracting with under consumption
+When you create a subcontracting PO for 100 finished materials as per BOM we have to supply child materials. Some child parts vendor consumes less this scenario is called as under consumption
+EX: Let’s take our starter motor example in this process vendor asked 100kgs of copper wire for solenoid manufacturing for 100 starter motors but vendor consumed only 90kgs of copper 10kgs of copper has under consumed by vendor.
+
+Steps Involved in subcontracting process under consumption:
+-----------------------------------------------------------
+
+1. Create materials raw materials and finished materials T code: MM01
+Ex: Finished material starter motor,
+Raw materials starter housing, armature, bushes, solenoid ,pinion bendex & copper wire
+2. Create Sub contracting vendor T code: XK01
+3. Create sub contracting PIR T code : ME11
+4. Create Bill of material ( BOM) T code: CS01
+5. Create Purchase Order (PO) with item category L T code: ME21N
+6. Post goods issue T code : ME2O
+7. Goods receipt for finished material T code : MIGO
+8. Subsequent adjustment for under consumed materials T code: MIGO
+9. Transfer posting of under consumed raw material from vendor T code: MIGO
+Stock to unrestricted
+
+
+2)Consignment Purchase Order:
+-----------------------------
+In the consignment process, say material is send by the vendor and it is kept at company premises here ownership of this material is lies with the vendor For example usually we raise the purchase requisition of 100 quantities and do the purchase order of 100 quantities and receive the goods receipt for these 100 quantities here ownership lies with you then you do invoice posting In consignment process, once you received the goods receipt you don’t pay the vendor for received 100 quantities because ownership is lies with vendor Going forward either you consume it or transfer ownership from vendor to yours. Depends on the quantity you received/consume accordingly you pay to vendor after settlement with vendor, here ownership lies with you once you pay to the vendor depends on how much quantity you consumed.
+Steps involved in consignment process:
+1. Create consignment purchase info records (TCODE: ME11)
+2. Create consignment Purchase order with item category K (TCODE: ME21N)
+3. Create Goods Receipt (TCODE:MIGO)
+No accounting entries (special stock) here though goods received still ownership lies with
+vendor and material is shown in vendor consignment not in storage location
+The stock which is present in vendor consignment is knows as special stock
+4. Based on material consumption or transfer to own stock using TCODE:MIGO
+Either you consume some quantity from special stock or transfer ownership of whole
+stock from vendor to yours
+
+Accounting entries:
+Consignment G/L account credit (-)-KON
+Stock account debit (+)-BSX
+Here in both cases ownership lies with you as you consumed so accounting entries generated
+
+5. Create condition records (TCODE:MRM1) with output type KONS
+6. Settlement (TCODE:MRKO)
+
+Accounting entries:
+Vendor account credit (-)-KBS
+Consignment G/L account debit (+)-KBS
+Depends on how many quantities consumed you do settlement with vendor
+
