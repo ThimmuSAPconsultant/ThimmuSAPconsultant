@@ -50,7 +50,7 @@ procurement is shoud be done in such away Materials are Order in a correct quant
          **SAP Process**
                 Create the PO.
 
-  **5) Purchase order Monitoring**
+    **5) Purchase Order Monitoring**
          The follow-up  can be carried out with Vendors  forthe  Expending the Purchase Order.
          
              **SAP Process**
